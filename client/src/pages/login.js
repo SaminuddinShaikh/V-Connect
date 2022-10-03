@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-// import { login } from "../redux/actions/authAction";
+import { login } from "../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
@@ -8,16 +8,24 @@ const Login = () => {
   const [userData, setUserData] = useState(initialState);
   const { email, password } = userData;
 
+  const dispatch = useDispatch();
+
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login(userData));
+  };
+
   return (
-    <div>
-      <form classNameName="auth_page">
+    <div className="auth_page">
+      <form onSubmit={handleSubmit}>
         <h3 className="text-uppercase text-center mb-4">V-Connect</h3>
         <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">
+          <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
           <input
@@ -34,7 +42,7 @@ const Login = () => {
           </div>
         </div>
         <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
+          <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label>
           <input
@@ -46,7 +54,7 @@ const Login = () => {
             value={password}
           />
         </div>
-        <button type="submit" className="btn btn-primary w-50" disabled={email && password ? false : true}>
+        <button type="submit" className="btn btn-dark w-100" disabled={email && password ? false : true}>
           Login
         </button>
         <p className="my-2">
