@@ -1,16 +1,21 @@
+import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Notify from "./components/notify/Notify";
+import { useSelector, useDispatch } from "react-redux";
 import PageRender from "./PageRender";
 import Home from "./pages/home";
 import Login from "./pages/login";
 
 function App() {
+  const { auth } = useSelector((state) => state);
   return (
     <Router>
+      <Notify />
       <input type="checkbox" id="theme" />
       <div className="App">
         <div className="main">
           <Routes>
-            <Route exact path="/" element={<Login />} />
+            <Route exact path="/" element={auth.token ? <Home /> : <Login />} />
             <Route exact path="/:page" element={<PageRender />} />
             <Route exact path="/:page/:id" element={<PageRender />} />
           </Routes>
