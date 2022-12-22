@@ -9,6 +9,8 @@ export const getDataAPI = async (url, token) => {
 export const postDataAPI = async (url, post, token) => {
   const res = await axiosInstance.post(`/api/${url}`, post, {
     headers: { Authorization: token },
+    // credentials: 'include',
+    withCredentials: true,
   });
   return res;
 };

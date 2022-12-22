@@ -5,9 +5,16 @@ import { useSelector, useDispatch } from "react-redux";
 import PageRender from "./PageRender";
 import Home from "./pages/home";
 import Login from "./pages/login";
+import { refreshToken } from "./redux/actions/authActions";
 
 function App() {
   const { auth } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshToken());
+  }, [dispatch]);
+
   return (
     <Router>
       <Notify />
