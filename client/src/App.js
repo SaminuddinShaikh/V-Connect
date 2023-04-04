@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Notify from "./components/notify/Notify";
+import Alert from "./components/alert/Alert";
 import { useSelector, useDispatch } from "react-redux";
 import PageRender from "./PageRender";
 import Home from "./pages/home";
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <Router>
-      <Notify />
+      <Alert />
       <input type="checkbox" id="theme" />
       <div className="App">
         <div className="main">
