@@ -9,7 +9,6 @@ import { GLOBALTYPES } from "../../redux/actions/globalTypes";
 const Alert = () => {
   const { alert } = useSelector((state) => state);
   const dispatch = useDispatch();
-  //   const {auth, alert} = state
   return (
     <div>
       {alert.loading && <Loading />}
