@@ -17,6 +17,7 @@ export const login = (data) => async (dispatch) => {
     });
   }
 };
+
 export const refreshToken = () => async (dispatch) => {
   const firstLogin = localStorage.getItem("firstLogin");
   if (firstLogin) {
@@ -34,5 +35,18 @@ export const refreshToken = () => async (dispatch) => {
         },
       });
     }
+  }
+};
+
+export const register = (data) => async (dispatch) => {
+  try {
+    console.log(data);
+  } catch (err) {
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: {
+        error: err.response.data.msg,
+      },
+    });
   }
 };

@@ -26,7 +26,7 @@ const Login = () => {
     <div className="auth_page">
       <form onSubmit={handleSubmit}>
         <h3 className="text-uppercase text-center mb-4">V-Connect</h3>
-        <div className="mb-3">
+        <div className="from-group">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
@@ -38,6 +38,7 @@ const Login = () => {
             onChange={handleChangeInput}
             value={email}
             name="email"
+            required
           />
           <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
@@ -55,11 +56,16 @@ const Login = () => {
               name="password"
               onChange={handleChangeInput}
               value={password}
+              required
             />
             <small onClick={() => setTypePass(!typePass)}>{typePass ? "Hide" : "Show"}</small>
           </div>
         </div>
-        <button type="submit" className="btn btn-dark w-100" disabled={email && password ? false : true}>
+        <button
+          type="submit"
+          className={`btn  w-100 mt-3 ${email && password ? "btn-dark" : "btn-secondary"} `}
+          // disabled={email && password ? false : true}
+        >
           Login
         </button>
         <p className="my-2">
