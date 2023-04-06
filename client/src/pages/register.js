@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { register } from "../redux/actions/authActions";
 
 const Register = () => {
-  const { auth } = useSelector((state) => state);
+  const { auth, alert } = useSelector((state) => state);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -38,7 +38,16 @@ const Register = () => {
           <label htmlFor="fullName" className="form-label">
             Full Name
           </label>
-          <input type="text" className="form-control" id="fullName" onChange={handleChangeInput} value={fullName} name="fullName" />
+          <input
+            type="text"
+            className={`form-control ${alert.fullName ? "input-valid-err" : ""}`}
+            id="fullName"
+            onChange={handleChangeInput}
+            value={fullName}
+            name="fullName"
+            required
+          />
+          <small className="form-text text-danger"> {alert.fullName ? alert.fullName : ""}</small>
         </div>
 
         <div className="from-group">
@@ -52,15 +61,25 @@ const Register = () => {
             onChange={handleChangeInput}
             value={username.toLocaleLowerCase().replace(/ /g, " ")}
             name="username"
+            required
           />
+          <small className="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
 
         <div className="from-group">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
           </label>
-          <input type="email" className="form-control" id="exampleInputEmail1" onChange={handleChangeInput} value={email} name="email" />
-          <div className="form-text">We'll never share your email with anyone else.</div>
+          <input
+            type="email"
+            className="form-control"
+            id="exampleInputEmail1"
+            onChange={handleChangeInput}
+            value={email}
+            name="email"
+            required
+          />
+          <small className="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
 
         <div className="form-group">
@@ -75,6 +94,7 @@ const Register = () => {
               name="password"
               onChange={handleChangeInput}
               value={password}
+              required
             />
             <small onClick={() => setTypePass(!typePass)}>{typePass ? "Hide" : "Show"}</small>
           </div>
@@ -92,6 +112,7 @@ const Register = () => {
               name="cf_password"
               onChange={handleChangeInput}
               value={cf_password}
+              required
             />
             <small onClick={() => setTypeCfPass(!typeCfPass)}>{typeCfPass ? "Hide" : "Show"}</small>
           </div>

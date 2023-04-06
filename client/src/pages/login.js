@@ -61,11 +61,7 @@ const Login = () => {
             <small onClick={() => setTypePass(!typePass)}>{typePass ? "Hide" : "Show"}</small>
           </div>
         </div>
-        <button
-          type="submit"
-          className={`btn  w-100 mt-3 ${email && password ? "btn-dark" : "btn-secondary"} `}
-          // disabled={email && password ? false : true}
-        >
+        <button type="submit" className={`btn  w-100 mt-3 ${email && password ? "btn-dark" : "btn-secondary"} `}>
           Login
         </button>
         <p className="my-2">

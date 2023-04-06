@@ -1,5 +1,6 @@
 import { postDataAPI } from "../../utils/fetchData";
 import { GLOBALTYPES } from "./globalTypes";
+import valid from "../../utils/valid";
 
 export const login = (data) => async (dispatch) => {
   try {
@@ -40,7 +41,8 @@ export const refreshToken = () => async (dispatch) => {
 
 export const register = (data) => async (dispatch) => {
   try {
-    console.log(data);
+    const check = valid(data);
+    check.errLength > 0 && dispatch({ type: GLOBALTYPES.ALERT, payload: check.errMsg });
   } catch (err) {
     dispatch({
       type: GLOBALTYPES.ALERT,
