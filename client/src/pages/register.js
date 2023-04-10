@@ -56,14 +56,14 @@ const Register = () => {
           </label>
           <input
             type="text"
-            className="form-control"
+            className={`form-control ${alert.username ? "input-valid-err" : ""}`}
             id="username"
             onChange={handleChangeInput}
             value={username.toLocaleLowerCase().replace(/ /g, " ")}
             name="username"
             required
           />
-          <small className="form-text text-muted">We'll never share your email with anyone else.</small>
+          <small className="form-text text-danger"> {alert.username ? alert.username : ""}</small>
         </div>
 
         <div className="from-group">
@@ -72,14 +72,14 @@ const Register = () => {
           </label>
           <input
             type="email"
-            className="form-control"
+            className={`form-control ${alert.email ? "input-valid-err" : ""}`}
             id="exampleInputEmail1"
             onChange={handleChangeInput}
             value={email}
             name="email"
             required
           />
-          <small className="form-text text-muted">We'll never share your email with anyone else.</small>
+          <small className="form-text text-danger"> {alert.email ? alert.email : ""}</small>
         </div>
 
         <div className="form-group">
@@ -89,7 +89,7 @@ const Register = () => {
           <div className="pass">
             <input
               type={typePass ? "text" : "password"}
-              className="form-control"
+              className={`form-control ${alert.password ? "input-valid-err" : ""}`}
               id="exampleInputPassword1"
               name="password"
               onChange={handleChangeInput}
@@ -98,6 +98,7 @@ const Register = () => {
             />
             <small onClick={() => setTypePass(!typePass)}>{typePass ? "Hide" : "Show"}</small>
           </div>
+          <small className="form-text text-danger"> {alert.password ? alert.password : ""}</small>
         </div>
 
         <div className="form-group ">
@@ -107,7 +108,7 @@ const Register = () => {
           <div className="pass">
             <input
               type={typeCfPass ? "text" : "password"}
-              className="form-control"
+              className={`form-control ${alert.cf_password ? "input-valid-err" : ""}`}
               id="cf_password"
               name="cf_password"
               onChange={handleChangeInput}
@@ -116,6 +117,7 @@ const Register = () => {
             />
             <small onClick={() => setTypeCfPass(!typeCfPass)}>{typeCfPass ? "Hide" : "Show"}</small>
           </div>
+          <small className="form-text text-danger"> {alert.cf_password ? alert.cf_password : ""}</small>
         </div>
 
         <div className=" d-flex justify-content-between mx-0 mb-1">

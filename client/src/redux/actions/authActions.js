@@ -40,9 +40,14 @@ export const refreshToken = () => async (dispatch) => {
 };
 
 export const register = (data) => async (dispatch) => {
+  const check = valid(data);
+
+  if (check.errLength > 0) return dispatch({ type: GLOBALTYPES.ALERT, payload: check.errMsg });
+
   try {
-    const check = valid(data);
-    check.errLength > 0 && dispatch({ type: GLOBALTYPES.ALERT, payload: check.errMsg });
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } });
+    const res = await postDataAPI("register", data);
+    console.log(res);
   } catch (err) {
     dispatch({
       type: GLOBALTYPES.ALERT,
