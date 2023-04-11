@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3001",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
   res.json({ msg: "Hello" });
 });
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`V-Connect Server is running on port:${port}`);
 });

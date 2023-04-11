@@ -1,17 +1,29 @@
 const valid = ({ fullName, username, email, password, cf_password }) => {
   const err = {};
 
-  err.fullName = !fullName ? "Please add your full name." : fullName.length > 25 && "Full name must be below 25 characters long.";
+  if (!fullName) {
+    err.fullName = "Please add your full name.";
+  } else if (fullName.length > 25) err.fullName = "Full name must be below 25 characters long.";
 
-  err.username = !username
-    ? "Please add your user name."
-    : username.replace(/ /g, "").length > 25 && "User name must be below 25 characters long.";
+  if (!username) {
+    err.username = "Please add your user name.";
+  } else if (username.replace(/ /g, "").length > 25) err.username = "User name must be below 25 characters long.";
 
-  err.email = !email ? "Please add your email." : !validateEmail(email) && "Email format is incorrect.";
+  if (!email) {
+    err.email = "Please add your email.";
+  } else if (!validateEmail(email)) {
+    err.email = "Email format is incorrect.";
+  }
 
-  err.password = !password ? "Please add your password." : password.length < 6 && "Password must be at least 6 characters.";
+  if (!password) {
+    err.password = "Please add your password.";
+  } else if (password.length < 6) {
+    err.password = "Password must be at least 6 characters.";
+  }
 
-  err.cf_password = password !== cf_password && "Confirm password did not match.";
+  if (password !== cf_password) {
+    err.cf_password = "Confirm password did not match.";
+  }
 
   return {
     errMsg: err,

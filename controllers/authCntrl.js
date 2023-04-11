@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const authCtrl = {
   register: async (req, res) => {
     try {
-      const { fullname, username, email, password, gender } = req.body;
+      const { fullName, username, email, password, gender } = req.body;
       let newUserName = username.toLowerCase().replace(/ /g, "");
 
       const userName = await Users.findOne({ username: newUserName });
@@ -20,7 +20,7 @@ const authCtrl = {
 
       const passwordHash = await bcrypt.hash(password, salt);
 
-      const newUser = new Users({ fullname, username: newUserName, email, password: passwordHash, gender });
+      const newUser = new Users({ fullName, username: newUserName, email, password: passwordHash, gender });
 
       const access_token = createAccessToken({ id: newUser._id });
       const refresh_token = createRefreshToken({ id: newUser._id });
@@ -51,7 +51,7 @@ const authCtrl = {
       const { email, password } = req.body;
       const user = await Users.findOne({ email }).populate("followers following", "-password");
 
-      if (!user) return res.status(400).json({ msg: "Invalid credentials" });
+      if (!user) return res.status(400).json({ msg: "Invalid credentials, Register if visiting for first time" });
 
       const isMatch = await bcrypt.compare(password, user.password);
 

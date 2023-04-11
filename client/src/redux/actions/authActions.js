@@ -43,11 +43,27 @@ export const register = (data) => async (dispatch) => {
   const check = valid(data);
 
   if (check.errLength > 0) return dispatch({ type: GLOBALTYPES.ALERT, payload: check.errMsg });
-
+  const { fullName, username, email, password, gender } = data;
+  const regData = { fullName, username, email, password, gender };
   try {
     dispatch({ type: GLOBALTYPES.ALERT, payload: { loading: true } });
-    const res = await postDataAPI("register", data);
+    const res = await postDataAPI("register", regData);
     console.log(res);
+    dispatch({
+      type: GLOBALTYPES.AUTH,
+      payload: {
+        token: res.data.access_token,
+        user: res.data.user,
+      },
+    });
+
+    localStorage.setItem("firstLogin", true);
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: {
+        success: res.data.msg,
+      },
+    });
   } catch (err) {
     dispatch({
       type: GLOBALTYPES.ALERT,
