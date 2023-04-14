@@ -36,6 +36,18 @@ img {
   object-fit: cover;
 }
 
+/* - - Auth - - */
+
 @import url("./auth.css");
+
+/* - - loading - - */
+
 @import url("./loading.css");
+
+/* - - header - - */
+
 @import url("./header.css");
+
+/* - - avatar - - */
+
+@import url("./avatar.css");

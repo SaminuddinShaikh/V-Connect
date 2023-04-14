@@ -9,7 +9,7 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 
 import Alert from "./components/alert/Alert";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/header/NavBar";
 import Register from "./pages/register";
 import PrivateRouter from "./customRouter/PrivateRouter";
 

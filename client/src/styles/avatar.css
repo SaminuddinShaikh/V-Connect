@@ -1,0 +1,17 @@
+.big-avatar {
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.medium-avatar {
+  width: 30px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.small-avatar {
+  width: 20px;
+  height: auto;
+  border-radius: 50%;
+}
