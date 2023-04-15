@@ -4,6 +4,7 @@ const cors = require("cors");
 const connectToMongo = require("./db");
 const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/authRouter");
+const userRouter = require("./routes/userRouter");
 
 connectToMongo();
 
@@ -20,6 +21,7 @@ app.use(cookieParser());
 //Routes
 
 app.use("/api", authRouter);
+app.use("/api",userRouter )
 
 app.get("/", (req, res) => {
   res.json({ msg: "Hello" });

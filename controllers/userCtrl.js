@@ -1,12 +1,13 @@
-const User = require("../models/userModel");
+const Users = require("../models/userModel");
 
 const userCtrl = {
   searchUser: async (req, res) => {
     try {
-    } catch (err) {
+      const users = await Users.find({username: {$regex: req.query.username}}).limit(10).select("fullName username avatar")
+       res.json({users})    } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
   },
 };
 
-module.exports = useCtrl;
+module.exports = userCtrl;
