@@ -4,6 +4,7 @@ import {useSelector,  useDispatch} from 'react-redux'
 import {getDataAPI} from '../../utils/fetchData'
 import {GLOBALTYPES} from '../../redux/actions/globalTypes'
 import {Link} from 'react-router-dom'
+import UserCard from "../UserCard";
 
 
 const Search = () => {
@@ -15,7 +16,7 @@ const Search = () => {
 
   useEffect(()=>{
     (search && auth.token) && getDataAPI(`search?username=${search}`, auth.token)
-    .then(res => setUsers(res))
+    .then(res => setUsers(res.data.users))
     .catch(err => {
       dispatch({type:GLOBALTYPES.ALERT, payload: {error: err.response.data.msg} })
     })
@@ -39,7 +40,7 @@ const Search = () => {
     <div className="users">
       {users.map((user)=>{
         <Link key={user._id} to={`/profile/${user._id}`}>
-          {/* <UserCard/> */}
+          <UserCard />
         </Link>
       })}
     </div>
