@@ -22,34 +22,34 @@ const Menu = () => {
   ];
 
   return (
-    <ul className="menu navbar-nav d-lg-flex col-lg-3 justify-content-lg-end ">
-      {navLinks.map((link, index) => (
-        <li className="nav-item" key={index}>
-          <Link className={`nav-link ${location.pathname === link.path && "active"}`} to={link.path}>
-            <span className="material-icons">{link.icon}</span>
-          </Link>
-        </li>
-      ))}
-      <li className="nav-item dropdown ">
-        <span className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <Avatar size="medium-avatar" />
-        </span>
-        <div className="dropdown-menu dropdown-menu-dark">
-          <Link className="dropdown-item" to={`/profile/${auth.user._id}`}>
-            Profile
-          </Link>
-          <label htmlFor="theme" className="dropdown-item" onClick={() => dispatch({ type: GLOBALTYPES.THEME, payload: !theme })}>
-            {theme ? "Light Mode" : "Dark Mode"}
-          </label>
-
-          <hr className="dropdown-divider" />
-
-          <Link className="dropdown-item" onClick={() => dispatch(logout())}>
-            Logout {auth.user.fullName.toUpperCase()}
-          </Link>
-        </div>
+    <div className="menu"><ul className="navbar-nav flex-row ">
+    {navLinks.map((link, index) => (
+      <li className="nav-item" key={index}>
+        <Link className={`nav-link ${location.pathname === link.path && "active"}`} to={link.path}>
+          <span className="material-icons">{link.icon}</span>
+        </Link>
       </li>
-    </ul>
+    ))}
+    <li className="nav-item dropdown ">
+      <span className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <Avatar size="medium-avatar" src={auth.user.avatar} />
+      </span>
+      <div className="dropdown-menu dropdown-menu-dark">
+        <Link className="dropdown-item" to={`/profile/${auth.user._id}`}>
+          Profile
+        </Link>
+        <label htmlFor="theme" className="dropdown-item" onClick={() => dispatch({ type: GLOBALTYPES.THEME, payload: !theme })}>
+          {theme ? "Light Mode" : "Dark Mode"}
+        </label>
+
+        <hr className="dropdown-divider" />
+
+        <Link className="dropdown-item" onClick={() => dispatch(logout())}>
+          Logout {auth.user.fullName.toUpperCase()}
+        </Link>
+      </div>
+    </li>
+  </ul></div>
   );
 };
 

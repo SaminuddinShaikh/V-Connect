@@ -15,12 +15,18 @@ const Search = () => {
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    (search && auth.token) && getDataAPI(`search?username=${search}`, auth.token)
+    search ? (getDataAPI(`search?username=${search}`, auth.token)
     .then(res => setUsers(res.data.users))
     .catch(err => {
       dispatch({type:GLOBALTYPES.ALERT, payload: {error: err.response.data.msg} })
-    })
+    })):(setUsers([]))
 },[search, auth.token, dispatch])
+
+const handleClose = () =>{
+  setSearch('')
+  setUsers([])
+}
+
   return (
     <form className="search-form">
       <input
@@ -36,12 +42,12 @@ const Search = () => {
         </span>
         <span>search</span>
       </div>
-      <div className="close-search">&times;</div>
+      <div className="close-search" style={{opacity: (users.length === 0 && search ==="" ) ? 0 : 1}} onClick={handleClose }>&times;</div>
     <div className="users">
-      {users.map((user)=>{
-        <Link key={user._id} to={`/profile/${user._id}`}>
-          <UserCard />
-        </Link>
+      {search && users.map((user)=>{
+       return( <Link key={user._id} to={`/profile/${user._id}`} onClick={handleClose}>
+       <UserCard user={user} border="border" />
+     </Link>)
       })}
     </div>
     </form>
