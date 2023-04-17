@@ -51,3 +51,7 @@ img {
 /* - - avatar - - */
 
 @import url("./avatar.css");
+
+/* - - profile - - */
+
+@import url("./profile.css");
