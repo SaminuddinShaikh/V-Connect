@@ -40,6 +40,7 @@ const Register = () => {
           </label>
           <input
             type="text"
+            placeholder="Full Name"
             className={`form-control ${alert.fullName ? "input-valid-err" : ""}`}
             id="fullName"
             onChange={handleChangeInput}
@@ -56,6 +57,7 @@ const Register = () => {
           </label>
           <input
             type="text"
+            placeholder="username"
             className={`form-control ${alert.username ? "input-valid-err" : ""}`}
             id="username"
             onChange={handleChangeInput}
@@ -72,6 +74,7 @@ const Register = () => {
           </label>
           <input
             type="email"
+            placeholder="Email"
             className={`form-control ${alert.email ? "input-valid-err" : ""}`}
             id="exampleInputEmail1"
             onChange={handleChangeInput}
