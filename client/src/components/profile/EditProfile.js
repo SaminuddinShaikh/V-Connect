@@ -58,9 +58,9 @@ const EditProfile = ({ setOnEdit }) => {
             style={{ filter: theme ? "invert(1)" : "invert(0)" }}
           />
           <span>
-            <i>
+            <label htmlFor="file-up">
               <FontAwesomeIcon icon={faCamera} />
-            </i>
+            </label>
             <p>Change</p>
             <input
               type="file"

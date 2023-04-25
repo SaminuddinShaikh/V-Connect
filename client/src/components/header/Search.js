@@ -54,6 +54,7 @@ const Search = () => {
         type="text"
         name="search"
         id="search"
+        title="Enter to Search"
         value={search}
         onChange={(e) =>
           setSearch(e.target.value.toLocaleLowerCase().replace(/ /g, ""))
@@ -63,7 +64,7 @@ const Search = () => {
         <span className="material-icons">
           <SearchIcon />
         </span>
-        <span>search</span>
+        <span>Enter to Search</span>
       </div>
       <div
         className="close-search"
