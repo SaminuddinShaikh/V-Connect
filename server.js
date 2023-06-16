@@ -21,13 +21,13 @@ app.use(cookieParser());
 //Routes
 
 app.use("/api", authRouter);
-app.use("/api",userRouter )
+app.use("/api", userRouter);
 
 app.get("/", (req, res) => {
   res.json({ msg: "Hello" });
 });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5050;
 app.listen(port, () => {
   console.log(`V-Connect Server is running on port:${port}`);
 });

@@ -9,7 +9,6 @@ import LoadIcon from "../../images/loading.gif";
 const Search = () => {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
-
   const { auth } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [load, setLoad] = useState(false);
