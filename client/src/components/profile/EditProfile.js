@@ -30,45 +30,29 @@ const EditProfile = ({ setOnEdit }) => {
   const changeAvatar = (e) => {
     const file = e.target.files[0];
     const err = checkImage(file);
-    err !== " " &&
-      dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err } });
+    err !== " " && dispatch({ type: GLOBALTYPES.ALERT, payload: { error: err } });
     setAvatar(file);
   };
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    name === "mobile"
-      ? setUerData({ ...userData, [name]: value.replace(/\D/g, "") })
-      : setUerData({ ...userData, [name]: value });
+    name === "mobile" ? setUerData({ ...userData, [name]: value.replace(/\D/g, "") }) : setUerData({ ...userData, [name]: value });
   };
 
   return (
     <div className="edit-profile">
-      <button
-        className="btn btn-danger btn_close"
-        onClick={() => setOnEdit(false)}
-      >
+      <button className="btn btn-danger btn_close" onClick={() => setOnEdit(false)}>
         Close
       </button>
       <form>
         <div className="info-avatar">
-          <img
-            src={avatar ? URL.createObjectURL(avatar) : auth.user.avatar}
-            alt="Avatar"
-            style={{ filter: theme ? "invert(1)" : "invert(0)" }}
-          />
+          <img src={avatar ? URL.createObjectURL(avatar) : auth.user.avatar} alt="Avatar" style={{ filter: theme ? "invert(1)" : "invert(0)" }} />
           <span>
             <label htmlFor="file-up">
               <FontAwesomeIcon icon={faCamera} />
             </label>
             <p>Change</p>
-            <input
-              type="file"
-              name="file"
-              id="file-up"
-              accept="image/*"
-              onChange={changeAvatar}
-            />
+            <input type="file" name="file" id="file-up" accept="image/*" onChange={changeAvatar} />
           </span>
         </div>
         <div className="from-group">
@@ -113,52 +97,22 @@ const EditProfile = ({ setOnEdit }) => {
 
         <div className="form-group">
           <label htmlFor="address">Address</label>
-          <input
-            type="text"
-            className="form-control"
-            id="address"
-            name="address"
-            placeholder="Address"
-            value={address}
-            onChange={handleInput}
-          />
+          <input type="text" className="form-control" id="address" name="address" placeholder="Address" value={address} onChange={handleInput} />
         </div>
 
         <div className="form-group">
           <label htmlFor="website">Web-Site</label>
-          <input
-            type="text"
-            className="form-control"
-            id="website"
-            name="website"
-            placeholder="website"
-            value={website}
-            onChange={handleInput}
-          />
+          <input type="text" className="form-control" id="website" name="website" placeholder="website" value={website} onChange={handleInput} />
         </div>
 
         <div className="form-group">
           <label htmlFor="story">Story</label>
-          <textarea
-            className="form-control"
-            id="story"
-            name="story"
-            placeholder="story"
-            value={story}
-            onChange={handleInput}
-          />
-          <small className="text-danger d-block text-right">
-            {story.length}/200
-          </small>
+          <textarea className="form-control" id="story" name="story" placeholder="story" value={story} onChange={handleInput} />
+          <small className="text-danger d-block text-right">{story.length}/200</small>
         </div>
         <label htmlFor="gender">Gender</label>
         <div className="input-group-prepend px-0 mb-4">
-          <select
-            name="gender"
-            id="gender"
-            className="custom-select text-capitalize w-100"
-            onChange={handleInput}
-          >
+          <select name="gender" id="gender" className="custom-select text-capitalize w-100" onChange={handleInput}>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
