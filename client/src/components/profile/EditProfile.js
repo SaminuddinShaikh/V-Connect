@@ -27,6 +27,16 @@ const EditProfile = ({ setOnEdit }) => {
     setUerData(auth.user);
   }, [auth.user]);
 
+  useEffect(() => {
+    const close = (e) => {
+      if (e.keyCode === 27) {
+        setOnEdit(false);
+      }
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, [setOnEdit]);
+
   const changeAvatar = (e) => {
     const file = e.target.files[0];
     const err = checkImage(file);
