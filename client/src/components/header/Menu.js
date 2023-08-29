@@ -26,36 +26,20 @@ const Menu = () => {
       <ul className="navbar-nav flex-row ">
         {navLinks.map((link, index) => (
           <li className="nav-item" key={index}>
-            <Link
-              className={`nav-link ${
-                location.pathname === link.path && "active"
-              }`}
-              to={link.path}
-            >
+            <Link className={`nav-link ${location.pathname === link.path && "active"}`} to={link.path}>
               <span className="material-icons">{link.icon}</span>
             </Link>
           </li>
         ))}
         <li className="nav-item dropdown ">
-          <span
-            className="nav-link dropdown-toggle"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
+          <span className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <Avatar size="medium-avatar" src={auth.user.avatar} />
           </span>
           <div className="dropdown-menu dropdown-menu-dark">
             <Link className="dropdown-item" to={`/profile/${auth.user._id}`}>
               Profile
             </Link>
-            <label
-              htmlFor="theme"
-              className="dropdown-item"
-              onClick={() =>
-                dispatch({ type: GLOBALTYPES.THEME, payload: !theme })
-              }
-            >
+            <label htmlFor="theme" className="dropdown-item" onClick={() => dispatch({ type: GLOBALTYPES.THEME, payload: !theme })}>
               {theme ? "Light Mode" : "Dark Mode"}
             </label>
 
