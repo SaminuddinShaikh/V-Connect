@@ -13,9 +13,7 @@ const Alert = () => {
     <div>
       {alert.loading && <Loading />}
       {alert.error && <Toast msg={alert.error} handleShow={() => dispatch({ type: GLOBALTYPES.ALERT, payload: {} })} bgColor="bg-danger" />}
-      {alert.success && (
-        <Toast msg={alert.success} handleShow={() => dispatch({ type: GLOBALTYPES.ALERT, payload: {} })} bgColor="bg-success" />
-      )}
+      {alert.success && <Toast msg={alert.success} handleShow={() => dispatch({ type: GLOBALTYPES.ALERT, payload: {} })} bgColor="bg-success" />}
     </div>
   );
 };
