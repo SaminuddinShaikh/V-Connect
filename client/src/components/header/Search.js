@@ -55,9 +55,7 @@ const Search = () => {
         id="search"
         title="Enter to Search"
         value={search}
-        onChange={(e) =>
-          setSearch(e.target.value.toLocaleLowerCase().replace(/ /g, ""))
-        }
+        onChange={(e) => setSearch(e.target.value.toLocaleLowerCase().replace(/ /g, ""))}
       />
       <div className="search-icon" style={{ opacity: search ? 0 : 0.3 }}>
         <span className="material-icons">
@@ -65,11 +63,7 @@ const Search = () => {
         </span>
         <span>Enter to Search</span>
       </div>
-      <div
-        className="close-search"
-        style={{ opacity: users.length === 0 && search === "" ? 0 : 1 }}
-        onClick={handleClose}
-      >
+      <div className="close-search" style={{ opacity: users.length === 0 && search === "" ? 0 : 1 }} onClick={handleClose}>
         &times;
       </div>
       <button type="submit" style={{ display: "none" }}>
@@ -79,14 +73,7 @@ const Search = () => {
       <div className="users">
         {search &&
           users.map((user) => {
-            return (
-              <UserCard
-                key={user._id}
-                user={user}
-                border="border"
-                handleClose={handleClose}
-              />
-            );
+            return <UserCard key={user._id} user={user} border="border" handleClose={handleClose} />;
           })}
       </div>
     </form>
